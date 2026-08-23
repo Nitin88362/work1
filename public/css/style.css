@@ -14,6 +14,8 @@
 
 .campaign-poster,.final-poster{background-image:url('/assets/uttarakhand-campaign-frame-v2.png')}
 .campaign-poster,.final-poster{background-image:url('/assets/uttarakhand-campaign-frame-v3.png')}
+.campaign-poster,.final-poster{background-image:url('/assets/cyber-selfie-uttarakhand-v4.png')}
+.campaign-poster .camera-window,.campaign-poster .photo-window,.final-poster .final-photo{left:22.1%;top:35.1%;width:55.7%;height:33.6%}
 
 /* Use a real img src on every browser; CSS content replacement is inconsistent on mobile */
 .police-logo{content:normal!important}

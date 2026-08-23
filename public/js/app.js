@@ -1,7 +1,7 @@
 const $ = id => document.getElementById(id);
 const state = { stream: null, photo: null, zoom: 1 };
 const campaignFrameAsset = new Image();
-campaignFrameAsset.src = '/assets/uttarakhand-campaign-frame-v3.png';
+campaignFrameAsset.src = '/assets/cyber-selfie-uttarakhand-v4.png';
 
 function toast(message) {
   const el = $('toast');
@@ -88,9 +88,9 @@ function drawPoster() {
   if (!raw.width || !raw.height) throw new Error('no photo');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = '#030705';
-  ctx.fillRect(156, 220, 785, 691);
-  ctx.save(); ctx.beginPath(); ctx.rect(156, 220, 785, 691); ctx.clip();
-  drawCover(ctx, raw, 156, 220, 785, 691, state.zoom);
+  ctx.fillRect(239, 474, 602, 454);
+  ctx.save(); ctx.beginPath(); ctx.rect(239, 474, 602, 454); ctx.clip();
+  drawCover(ctx, raw, 239, 474, 602, 454, state.zoom);
   ctx.restore();
   if (campaignFrameAsset.complete && campaignFrameAsset.naturalWidth) ctx.drawImage(campaignFrameAsset, 0, 0, 1080, 1350);
 }
