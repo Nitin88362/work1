@@ -12,5 +12,7 @@
 .camera-empty i,.camera-empty b,.face-guide,.camera-window:after{display:none!important}.camera-empty span{font-family:Arial,'Noto Sans Devanagari',sans-serif;font-size:12px;color:#d0d0d0;max-width:86%;line-height:1.4}.camera-empty span:before{content:'Camera शुरू करने के लिए नीचे button दबाएँ';font-size:12px}.camera-empty span{font-size:0}
 @media(max-width:600px){.page{padding:0 6px}.experience{width:min(100%,480px)}.topbar{height:46px;padding:0 8px}.topbar h1{font-size:20px}.topbar span{font-size:8px}.screen{min-height:calc(100dvh - 46px);padding:15px 12px 20px;border-radius:14px}.screen-label{height:50px}.screen-label h2{font-size:22px}.campaign-poster{width:100%;height:auto;aspect-ratio:4/5}.campaign-poster .camera-window,.campaign-poster .photo-window{height:51.9%;margin:0}.campaign-poster .police-logo{width:16.7%;height:15%}.campaign-poster .initiative{height:5%;font-size:clamp(9px,2.8vw,12px)}.capture-circle{width:62px;height:62px;margin-top:14px;font-size:23px}.zoom-label{font-size:8px}.outline-action,.main-action,.share-action{height:40px;font-size:13px}.final-wrap{height:auto;min-height:calc(100dvh - 270px)}.final-poster{width:min(82vw,339px);height:auto;aspect-ratio:4/5}.share-heading{height:72px}.share-heading h2{font-size:22px}.camera-empty span:before{font-size:11px}}
 
+.campaign-poster,.final-poster{background-image:url('/assets/uttarakhand-campaign-frame-v2.png')}
+
 /* Use a real img src on every browser; CSS content replacement is inconsistent on mobile */
 .police-logo{content:normal!important}

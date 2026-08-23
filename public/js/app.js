@@ -1,7 +1,7 @@
 const $ = id => document.getElementById(id);
 const state = { stream: null, photo: null, zoom: 1 };
 const campaignFrameAsset = new Image();
-campaignFrameAsset.src = '/assets/uttarakhand-campaign-frame.png?v=1';
+campaignFrameAsset.src = '/assets/uttarakhand-campaign-frame-v2.png';
 
 function toast(message) {
   const el = $('toast');
