@@ -12,7 +12,7 @@ const rateBuckets = new Map();
 
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
-app.use(express.json({ limit: '12mb' }));
+app.use(express.json({ limit: '4mb' }));
 app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 function configured(res) {
@@ -54,7 +54,7 @@ app.post('/api/selfies', rateLimit('upload', 20, 3600000), async (req, res) => {
     const match = /^data:(image\/(?:jpeg|png));base64,([A-Za-z0-9+/=]+)$/.exec(req.body?.image || '');
     if (!match) return res.status(400).json({ error: 'Valid JPEG or PNG image required' });
     const buffer = Buffer.from(match[2], 'base64');
-    if (!buffer.length || buffer.length > 8 * 1024 * 1024) return res.status(413).json({ error: 'Image is too large' });
+    if (!buffer.length || buffer.length > 2.5 * 1024 * 1024) return res.status(413).json({ error: 'Image is too large' });
     const extension = match[1] === 'image/png' ? 'png' : 'jpg';
     const pathname = `selfies/${Date.now()}-${crypto.randomBytes(12).toString('hex')}.${extension}`;
     const blob = await put(pathname, buffer, { access: 'private', contentType: match[1], addRandomSuffix: false });

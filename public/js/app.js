@@ -33,6 +33,16 @@ $('cameraBtn').onclick = async () => {
   }
 };
 
+function uploadSizedImage(source) {
+  const limit = 960;
+  const scale = Math.min(1, limit / Math.max(source.width, source.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(source.width * scale);
+  canvas.height = Math.round(source.height * scale);
+  canvas.getContext('2d').drawImage(source, 0, 0, canvas.width, canvas.height);
+  return canvas.toDataURL('image/jpeg', 0.82);
+}
+
 $('captureBtn').onclick = async () => {
   const video = $('video');
   const raw = $('rawCanvas');
@@ -54,12 +64,15 @@ $('captureBtn').onclick = async () => {
     const response = await fetch('/api/selfies', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ image: state.photo })
+      body: JSON.stringify({ image: uploadSizedImage(raw) })
     });
-    if (!response.ok) throw new Error('upload failed');
+    if (!response.ok) {
+      const result = await response.json().catch(() => ({}));
+      throw new Error(result.error || `Upload failed (${response.status})`);
+    }
     toast('Selfie admin panel में सुरक्षित save हो गई है।');
-  } catch {
-    toast('Selfie server पर save नहीं हो सकी। Internet connection जाँचें।');
+  } catch (error) {
+    toast(`Selfie save नहीं हुई: ${error.message}`);
   }
 };
 
@@ -98,12 +111,11 @@ function drawPoster() {
   const raw = $('rawCanvas');
   if (!raw.width || !raw.height) throw new Error('no photo');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#030705';
-  ctx.fillRect(239, 474, 602, 454);
+  if (campaignFrameAsset.complete && campaignFrameAsset.naturalWidth) ctx.drawImage(campaignFrameAsset, 0, 0, 1080, 1350);
+  ctx.fillStyle = '#030705'; ctx.fillRect(239, 474, 602, 454);
   ctx.save(); ctx.beginPath(); ctx.rect(239, 474, 602, 454); ctx.clip();
   drawCover(ctx, raw, 239, 474, 602, 454, state.zoom);
   ctx.restore();
-  if (campaignFrameAsset.complete && campaignFrameAsset.naturalWidth) ctx.drawImage(campaignFrameAsset, 0, 0, 1080, 1350);
 }
 
 async function posterBlob() {
