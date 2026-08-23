@@ -70,7 +70,6 @@ $('captureBtn').onclick = async () => {
       const result = await response.json().catch(() => ({}));
       throw new Error(result.error || `Upload failed (${response.status})`);
     }
-    toast('Selfie admin panel में सुरक्षित save हो गई है।');
   } catch (error) {
     toast(`Selfie save नहीं हुई: ${error.message}`);
   }
