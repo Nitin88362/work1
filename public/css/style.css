@@ -72,9 +72,5 @@ body:after{width:46vw;height:46vw;right:-18vw;bottom:-20vw;background:radial-gra
 .page{background-image:linear-gradient(90deg,#020b1a80,#03152b30 50%,#020b1a80),url('/assets/uttarakhand-cyber-web-bg.png');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed}
 @media(max-width:760px){.page{background-image:linear-gradient(#0210278c,#061c3399),url('/assets/uttarakhand-cyber-web-bg.png');background-position:center;background-attachment:scroll}}
 
-/* Keep the same generated landscape visible through the center area */
-.screen{background:linear-gradient(90deg,#02112642,#061b3030 48%,#11163d42);backdrop-filter:none;border-color:#55d9ff66;box-shadow:inset 0 1px #ffffff12}
-@media(max-width:760px){.screen{background:linear-gradient(#0211263d,#071b323d)}}
-
 /* Use a real img src on every browser; CSS content replacement is inconsistent on mobile */
 .police-logo{content:normal!important}
