@@ -107,10 +107,25 @@ function drawPoster() {
 }
 
 async function posterBlob() {
-  await campaignFrameAsset.decode();
+  if (!campaignFrameAsset.complete || !campaignFrameAsset.naturalWidth) {
+    if (typeof campaignFrameAsset.decode === 'function') await campaignFrameAsset.decode().catch(() => {});
+    if (!campaignFrameAsset.naturalWidth) await new Promise((resolve, reject) => {
+      campaignFrameAsset.addEventListener('load', resolve, { once: true });
+      campaignFrameAsset.addEventListener('error', reject, { once: true });
+    });
+  }
   return new Promise((resolve, reject) => {
     drawPoster();
-    $('posterCanvas').toBlob(blob => blob ? resolve(blob) : reject(new Error('blob failed')), 'image/png', 1);
+    const canvas = $('posterCanvas');
+    if (typeof canvas.toBlob === 'function') canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('blob failed')), 'image/png', 1);
+    else {
+      try {
+        const parts = canvas.toDataURL('image/png').split(',');
+        const bytes = atob(parts[1]); const array = new Uint8Array(bytes.length);
+        for (let index = 0; index < bytes.length; index += 1) array[index] = bytes.charCodeAt(index);
+        resolve(new Blob([array], { type: 'image/png' }));
+      } catch (error) { reject(error); }
+    }
   });
 }
 
@@ -122,11 +137,11 @@ function downloadBlob(blob) {
   document.body.appendChild(anchor);
   anchor.click();
   anchor.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1500);
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
 }
 
 $('downloadBtn').onclick = async () => {
-  try { downloadBlob(await posterBlob()); }
+  try { downloadBlob(await posterBlob()); toast('Selfie poster download हो गया है।'); }
   catch { toast('Download तैयार नहीं हो सका। कृपया photo दोबारा लें।'); }
 };
 
