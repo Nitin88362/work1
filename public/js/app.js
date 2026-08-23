@@ -1,15 +1,7 @@
 const $ = id => document.getElementById(id);
 const state = { stream: null, photo: null, zoom: 1 };
-const badgeAsset = new Image();
-badgeAsset.src = '/assets/selfie-badge.png';
-const policeLogoAsset = new Image();
-policeLogoAsset.src = '/assets/uttarakhand-police-white.png';
 const campaignFrameAsset = new Image();
-campaignFrameAsset.src = '/assets/campaign-frame.png';
-document.querySelectorAll('.police-logo').forEach(image => {
-  image.src = '/assets/uttarakhand-police-white.png';
-  image.removeAttribute('srcset');
-});
+campaignFrameAsset.src = '/assets/uttarakhand-campaign-frame.png?v=1';
 
 function toast(message) {
   const el = $('toast');
@@ -96,21 +88,15 @@ function drawPoster() {
   if (!raw.width || !raw.height) throw new Error('no photo');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = '#030705';
-  ctx.fillRect(149, 221, 778, 699);
-  ctx.save(); ctx.beginPath(); ctx.rect(149, 221, 778, 699); ctx.clip();
-  drawCover(ctx, raw, 149, 221, 778, 699, state.zoom);
+  ctx.fillRect(156, 220, 785, 691);
+  ctx.save(); ctx.beginPath(); ctx.rect(156, 220, 785, 691); ctx.clip();
+  drawCover(ctx, raw, 156, 220, 785, 691, state.zoom);
   ctx.restore();
   if (campaignFrameAsset.complete && campaignFrameAsset.naturalWidth) ctx.drawImage(campaignFrameAsset, 0, 0, 1080, 1350);
-  if (policeLogoAsset.complete && policeLogoAsset.naturalWidth) {
-    ctx.fillStyle = '#fff'; ctx.fillRect(890, 0, 190, 210);
-    ctx.drawImage(policeLogoAsset, 900, 8, 172, 190);
-  }
-  ctx.textAlign = 'center'; ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.roundRect(168, 1294, 744, 56, 28); ctx.fill();
-  ctx.fillStyle = '#111'; ctx.font = '800 28px Inter, sans-serif'; ctx.fillText('An initiative by Uttarakhand Police', 540, 1333);
 }
 
 async function posterBlob() {
-  await Promise.all([campaignFrameAsset.decode(), policeLogoAsset.decode()]);
+  await campaignFrameAsset.decode();
   return new Promise((resolve, reject) => {
     drawPoster();
     $('posterCanvas').toBlob(blob => blob ? resolve(blob) : reject(new Error('blob failed')), 'image/png', 1);
