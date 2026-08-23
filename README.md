@@ -17,7 +17,7 @@ In Vercel Project Settings → Environment Variables, set:
 
 - `ADMIN_PASSWORD` — required; use a private password with at least 12 characters.
 - `ADMIN_SESSION_SECRET` — required; use a random value with at least 32 characters.
-- `BLOB_READ_WRITE_TOKEN` — Vercel adds this automatically when a **Private Blob store** is connected to the project.
+- Blob credentials (`BLOB_STORE_ID` with Vercel OIDC, or `BLOB_READ_WRITE_TOKEN`) are added automatically when a **Private Blob store** is connected to the project.
 
 In Vercel Storage, create a Blob store with access set to **Private**, then connect it to this project. Do not use a Public Blob store for participant selfies.
 

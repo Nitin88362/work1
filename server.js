@@ -50,7 +50,6 @@ function rateLimit(name, maxRequests, windowMs) {
 
 app.post('/api/selfies', rateLimit('upload', 20, 3600000), async (req, res) => {
   try {
-    if (!process.env.BLOB_READ_WRITE_TOKEN) return res.status(503).json({ error: 'Private Blob storage is not connected' });
     const match = /^data:(image\/(?:jpeg|png));base64,([A-Za-z0-9+/=]+)$/.exec(req.body?.image || '');
     if (!match) return res.status(400).json({ error: 'Valid JPEG or PNG image required' });
     const buffer = Buffer.from(match[2], 'base64');
