@@ -17,5 +17,56 @@
 .campaign-poster,.final-poster{background-image:url('/assets/cyber-selfie-uttarakhand-v4.png')}
 .campaign-poster .camera-window,.campaign-poster .photo-window,.final-poster .final-photo{left:22.1%;top:35.1%;width:55.7%;height:33.6%}
 
+/* Full-screen Uttarakhand cyber campaign experience */
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans Devanagari',sans-serif;background:#03132a}
+body:before,body:after{content:'';position:fixed;pointer-events:none;border-radius:50%;filter:blur(10px);opacity:.55}
+body:before{width:42vw;height:42vw;left:-15vw;top:-18vw;background:radial-gradient(circle,#00bfff55 0,transparent 68%)}
+body:after{width:46vw;height:46vw;right:-18vw;bottom:-20vw;background:radial-gradient(circle,#7a2cff44 0,transparent 68%)}
+.page{position:relative;z-index:1;width:100%;height:100dvh;min-height:0;padding:clamp(10px,2vh,22px);align-items:center;background:linear-gradient(125deg,#020d1e 0%,#062b50 48%,#11153e 100%)}
+.page:before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.25;background-image:linear-gradient(#46cfff12 1px,transparent 1px),linear-gradient(90deg,#46cfff12 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+.experience{position:relative;width:min(96vw,1180px);height:min(96dvh,900px);display:grid;grid-template-rows:72px minmax(0,1fr);filter:drop-shadow(0 24px 55px #0008)}
+.topbar{height:72px;padding:0 clamp(18px,3vw,34px);border:1px solid #6edcff45;border-bottom:0;border-radius:24px 24px 0 0;background:linear-gradient(90deg,#061a32eb,#071428e8);backdrop-filter:blur(18px);box-shadow:inset 0 1px #fff1}
+.topbar h1{font-family:'Oswald',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:1.5px;color:#fff;text-shadow:0 2px 18px #13c5ff66}
+.topbar h1:before{content:'◈';display:inline-grid;place-items:center;width:42px;height:42px;margin-right:14px;border:1px solid #16d8ff;border-radius:12px;color:#19dfff;background:#00bfff12;vertical-align:middle}
+.topbar span{display:flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid #45d5ff55;border-radius:30px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:#bfeeff}
+.topbar b{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;font-size:17px;font-weight:900;letter-spacing:0;color:#03152b;background:linear-gradient(135deg,#39e7ff,#34a8ff)}
+.screen{width:100%;height:100%;min-height:0;padding:clamp(14px,2vh,22px) clamp(16px,2.5vw,34px);border:1px solid #6edcff45;border-radius:0 0 24px 24px;background:linear-gradient(145deg,#061a32e8,#09152ce8 60%,#221745d9);backdrop-filter:blur(18px);overflow:hidden}
+.screen.active{display:grid;grid-template-columns:minmax(170px,1fr) auto minmax(170px,1fr);grid-template-rows:auto minmax(0,1fr) auto;column-gap:clamp(18px,3vw,42px);align-items:center}
+.screen-label{grid-column:1;height:auto;align-self:start;padding-top:clamp(15px,8vh,95px);color:#fff}
+.screen-label small{font-family:'Inter',sans-serif;font-size:11px;font-weight:800;letter-spacing:4px;color:#28dcff}
+.screen-label h2{max-width:260px;margin-top:10px;font-family:'Oswald',sans-serif;font-size:clamp(30px,4vw,58px);line-height:1.02;letter-spacing:.5px;color:#fff;text-shadow:0 3px 22px #0008}
+.screen-label h2:after{content:'उत्तराखंड साइबर सुरक्षा अभियान';display:block;margin-top:15px;font-family:'Noto Sans Devanagari',sans-serif;font-size:clamp(13px,1.5vw,18px);font-weight:600;line-height:1.5;color:#a9cde9}
+.campaign-poster{grid-column:2;grid-row:1/3;width:auto;height:min(72dvh,720px);aspect-ratio:4/5;border:1px solid #55ddff;border-radius:16px;box-shadow:0 18px 50px #0009,0 0 28px #15bfff2e;background-color:#061120}
+.capture-circle{grid-column:2;grid-row:3;width:auto;min-width:260px;height:56px;margin:12px auto 0;padding:0 34px;border:0;border-radius:18px;font-size:0;background:linear-gradient(100deg,#07c4ef,#307dff 52%,#8c38ef);box-shadow:0 10px 28px #007cff55,inset 0 1px #fff5;transition:transform .2s,filter .2s}
+.capture-circle:after{content:'START CAMERA';font-family:'Inter',sans-serif;font-size:15px;font-weight:900;letter-spacing:.8px;color:#fff}
+#captureBtn:after{content:'TAKE SELFIE'}
+.capture-circle i{margin-right:10px;font-size:19px}
+.capture-circle:hover{transform:translateY(-2px);filter:brightness(1.12)}
+.zoom-label,.two-actions,.share-actions,.share-tip{grid-column:2;width:100%}
+.zoom-label{grid-row:3;margin-top:8px;color:#b6d5ec;font-size:10px}
+#screen2 input[type=range]{grid-column:2;grid-row:3;align-self:end;margin-bottom:52px;accent-color:#20cfff}
+.two-actions{grid-row:3;margin-top:58px;gap:10px}
+.outline-action,.main-action,.share-action{height:46px;border-radius:13px;font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:.25px}
+.outline-action{border:1px solid #62dfff66;color:#eaf8ff;background:#07172acc}.main-action{background:linear-gradient(100deg,#09bde8,#287cff,#8538e9)}
+.share-heading{grid-column:1;height:auto;text-align:left}
+.final-wrap{grid-column:2;grid-row:1/3;height:auto;min-height:0}
+.final-poster{width:auto;height:min(65dvh,650px);aspect-ratio:4/5;border:1px solid #52dcff;border-radius:15px;box-shadow:0 18px 50px #0009,0 0 28px #15bfff2e}
+.share-actions{grid-row:3;margin-top:12px;gap:10px}.share-action{background:linear-gradient(100deg,#14dc75,#08bca8);font-weight:900}.share-tip{grid-row:3;margin-top:116px;color:#93b8cf;font-size:9px}
+.app-toast{position:fixed;left:50%;right:auto;bottom:22px;min-width:min(90vw,420px);transform:translateX(-50%);font-size:13px}
+
+@media(max-width:760px){
+ html,body{overflow:auto}.page{min-height:100dvh;height:auto;padding:0;background:linear-gradient(155deg,#020d1e,#062b50 48%,#171540)}
+ .experience{width:100%;height:100dvh;min-height:640px;grid-template-rows:62px minmax(0,1fr);filter:none}
+ .topbar{height:62px;padding:0 12px;border-radius:0}.topbar h1{font-size:19px;letter-spacing:.5px}.topbar h1:before{width:34px;height:34px;margin-right:8px;border-radius:10px}.topbar span{padding:5px 9px;font-size:7px;letter-spacing:1px}.topbar b{width:30px;height:30px;font-size:14px}
+ .screen{padding:10px 12px 14px;border-radius:0;overflow:hidden}.screen.active{display:flex;flex-direction:column;justify-content:center}
+ .screen-label{width:100%;height:46px;padding:0;align-self:auto}.screen-label small{font-size:8px;letter-spacing:2px}.screen-label h2{max-width:none;margin-top:3px;font-size:23px}.screen-label h2:after{display:none}
+ .campaign-poster{grid-column:auto;grid-row:auto;width:auto;height:min(calc(100dvh - 190px),calc((100vw - 24px)*1.25));max-width:calc(100vw - 24px);margin:auto;border-radius:12px}
+ .capture-circle{grid-column:auto;grid-row:auto;width:min(86%,360px);min-width:0;height:50px;margin:10px auto 0;border-radius:15px}.capture-circle:after{font-size:14px}
+ .zoom-label,.two-actions,.share-actions,.share-tip{grid-column:auto;width:100%}.zoom-label{grid-row:auto;margin-top:6px}#screen2 input[type=range]{grid-column:auto;grid-row:auto;align-self:auto;margin:0}.two-actions{grid-row:auto;margin-top:6px}.outline-action,.main-action,.share-action{height:40px;font-size:12px}
+ .share-heading{grid-column:auto;height:48px;text-align:left}.share-heading h2{font-size:20px}
+ .final-wrap{grid-column:auto;grid-row:auto;flex:1;width:100%;height:auto;min-height:0}.final-poster{width:auto;height:min(calc(100dvh - 260px),calc((86vw)*1.25));max-width:86vw}
+ .share-actions{grid-row:auto;margin-top:8px}.share-tip{grid-row:auto;margin-top:6px}
+}
+
 /* Use a real img src on every browser; CSS content replacement is inconsistent on mobile */
 .police-logo{content:normal!important}
