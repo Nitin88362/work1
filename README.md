@@ -11,13 +11,14 @@ npm start
 
 Open `http://localhost:3000` and admin dashboard at `http://localhost:3000/admin`.
 
-The SQLite database is created automatically at `data/campaign.db`; captured selfies are stored in `data/uploads/` and shown only in the password-protected admin panel.
+Captured selfies are stored in a **Private Vercel Blob store** and shown only through the password-protected admin panel.
 
-Before starting locally or on Render, set these environment variables:
+In Vercel Project Settings → Environment Variables, set:
 
 - `ADMIN_PASSWORD` — required; use a private password with at least 12 characters.
-- `DATA_DIR` — set this to the mounted Persistent Disk path (for example `/var/data`).
+- `ADMIN_SESSION_SECRET` — required; use a random value with at least 32 characters.
+- `BLOB_READ_WRITE_TOKEN` — Vercel adds this automatically when a **Private Blob store** is connected to the project.
 
-Without a Render Persistent Disk, SQLite records and uploaded selfies can disappear when the service restarts or redeploys.
+In Vercel Storage, create a Blob store with access set to **Private**, then connect it to this project. Do not use a Public Blob store for participant selfies.
 
 > Camera access works on localhost. A production deployment must use HTTPS.
