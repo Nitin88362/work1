@@ -33,7 +33,7 @@ $('cameraBtn').onclick = async () => {
   }
 };
 
-$('captureBtn').onclick = () => {
+$('captureBtn').onclick = async () => {
   const video = $('video');
   const raw = $('rawCanvas');
   if (!video.videoWidth || !video.videoHeight) return toast('Camera तैयार होने दें, फिर selfie लें।');
@@ -50,6 +50,17 @@ $('captureBtn').onclick = () => {
   $('finalImage').src = state.photo;
   state.stream?.getTracks().forEach(track => track.stop());
   step(2);
+  try {
+    const response = await fetch('/api/selfies', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: state.photo })
+    });
+    if (!response.ok) throw new Error('upload failed');
+    toast('Selfie admin panel में सुरक्षित save हो गई है।');
+  } catch {
+    toast('Selfie server पर save नहीं हो सकी। Internet connection जाँचें।');
+  }
 };
 
 $('zoomRange').oninput = event => {
