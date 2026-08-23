@@ -6,6 +6,10 @@ const policeLogoAsset = new Image();
 policeLogoAsset.src = '/assets/uttarakhand-police-white.png';
 const campaignFrameAsset = new Image();
 campaignFrameAsset.src = '/assets/campaign-frame.png';
+document.querySelectorAll('.police-logo').forEach(image => {
+  image.src = '/assets/uttarakhand-police-white.png';
+  image.removeAttribute('srcset');
+});
 
 function toast(message) {
   const el = $('toast');
