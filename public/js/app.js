@@ -2,6 +2,8 @@ const $ = id => document.getElementById(id);
 const state = { stream: null, photo: null, zoom: 1 };
 const badgeAsset = new Image();
 badgeAsset.src = '/assets/selfie-badge.png';
+const policeLogoAsset = new Image();
+policeLogoAsset.src = '/assets/uttarakhand-police.jpeg';
 
 function toast(message) {
   const el = $('toast');
@@ -90,13 +92,15 @@ function drawPoster() {
   ctx.fillStyle = '#07122d';
   ctx.fillRect(0, 0, 1080, 1350);
 
-  const gradient = ctx.createLinearGradient(0, 0, 1080, 0);
-  gradient.addColorStop(0, '#079ddf'); gradient.addColorStop(.52, '#3157df'); gradient.addColorStop(1, '#a52bd3');
-  ctx.fillStyle = gradient; ctx.fillRect(0, 0, 1080, 220);
+  ctx.fillStyle = '#ef1008'; ctx.fillRect(0, 0, 1080, 220);
   ctx.textAlign = 'center'; ctx.fillStyle = '#fff'; ctx.font = '900 72px "Noto Sans Devanagari", sans-serif';
   ctx.fillText('मैं जागरूक हूँ', 540, 92);
   ctx.fillStyle = '#fff3d7'; ctx.font = '900 53px "Noto Sans Devanagari", sans-serif';
   ctx.fillText('साइबर क्राइम से मुक्त हूँ', 540, 170);
+  ctx.fillStyle = '#f4e6c8'; ctx.beginPath(); ctx.arc(90, 108, 62, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#e76818'; ctx.font = '800 25px "Noto Sans Devanagari", sans-serif'; ctx.fillText('साइबर', 90, 100);
+  ctx.fillStyle = '#16344a'; ctx.font = '800 22px "Noto Sans Devanagari", sans-serif'; ctx.fillText('जागरूक', 90, 130);
+  if (policeLogoAsset.complete && policeLogoAsset.naturalWidth) ctx.drawImage(policeLogoAsset, 920, 38, 125, 125);
 
   ctx.save(); ctx.beginPath(); ctx.rect(140, 220, 800, 760); ctx.clip();
   drawCover(ctx, raw, 140, 220, 800, 760, state.zoom);
@@ -114,7 +118,7 @@ function drawPoster() {
     ctx.drawImage(badgeAsset, 825, 1010, 190, 285);
   }
   ctx.textAlign = 'center'; ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.roundRect(225, 1280, 630, 52, 26); ctx.fill();
-  ctx.fillStyle = '#111827'; ctx.font = '800 23px Inter, sans-serif'; ctx.fillText('A SAFER DIGITAL INDIA INITIATIVE', 540, 1315);
+  ctx.fillStyle = '#111827'; ctx.font = '800 23px Inter, sans-serif'; ctx.fillText('AN INITIATIVE BY UTTARAKHAND POLICE', 540, 1315);
 }
 
 function posterBlob() {
